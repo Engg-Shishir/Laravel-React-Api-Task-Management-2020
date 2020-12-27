@@ -22,6 +22,7 @@
 
 
 + php artisan make:model Project -m
++ create controller ProjectController,TaskController
 
 
 
