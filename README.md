@@ -21,6 +21,8 @@
 
 
 
++ php artisan make:model Project -m
+
 
 
 
