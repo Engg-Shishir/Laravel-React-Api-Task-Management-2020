@@ -26,5 +26,13 @@
 
 
 
+>### use tinker to insert data
++ php artisan tinker
++ $user = new User()
++ $user->name = "Shishir"
++ $user->email = "user@gmail.com"
++ $user->password = Hash::make("12345678")
++ $user->save()
+
 
 
