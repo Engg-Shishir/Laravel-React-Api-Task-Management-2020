@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\ProjectController;
+use App\Http\Controllers\Api\TaskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,5 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('projects','Api/ProjectController');
-Route::apiResource('tasks','Api/TaskController');
+Route::apiResource('projects',ProjectController::class);
+Route::apiResource('tasks',TaskController::class);
