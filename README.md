@@ -8,3 +8,4 @@
 + run `npm install` for create node_modules folder. where all npm package stored.
 + run `npm run dev`
 + for dunamic react routing install `npm i react-router-dom`
++ install Laravel difault authentication `php artisan ui:auth`
