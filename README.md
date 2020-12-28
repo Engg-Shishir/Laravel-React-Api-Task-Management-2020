@@ -1,6 +1,15 @@
 # Laravel-React-Api-Task-Management-2020
 <br><br><br>
 
+
+
+
+### To start this project 
++ follow `package.json` file and install require packages. At first run `npm install`
+
+
+
+
 + install laravel `composer create-project laravel/laravel blog`
 + install ui package to manage third party package access `composer require laravel/ui`
 + install bootstrap in laravel `php artisan ui bootstrap`
