@@ -26,6 +26,13 @@
 + run `npm run dev` this command compile react full code then gives us result.if you use `npm run dev` every single changes you should again `run npm run dev`, otherwise change of react code is not effect in our project.
 
 + `npm run watch` only watching any of changes in our react code automatically
++ run `npm i @babel/plugin-proposal-class-properties` to support `ES6` code in browser. it is janerally needed when you use `class component`
++ then create a `.babelrc` file inside route folder with
+  ```javascript
+  {
+   "plugins": ["@babel/plugin-proposal-class-properties"]
+  }
+  ```
 
 
 
