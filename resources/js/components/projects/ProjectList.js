@@ -36,13 +36,21 @@ class ProjectList extends React.Component{
     <>
     <div className="card mt-2">
       <div className="card-header text-center bg-dark">
-        <span className="text-danger h1">Project List -- {this.state.projectLists.length}</span>
+        <div className="float-center">
+          <span className="text-danger h1">Project List -- {this.state.projectLists.length}</span>
+        </div>
+        <div className="float-right">
+            <button className="btn btn-sm bg-danger"><i className="fas fa-plus"></i>&nbsp; Create</button>
+        </div>
+        <div className="clearfix"></div>
       </div>
     </div>
     <div className="row">
+      {/* Show loading.... functionalty before loading data */}
       {this.state.isLoading && <h2>Loading......</h2>}
       <div className="col-md-12 m-auto">          
         {
+          /* uee map functonality to access all project one by one*/
           this.state.projectLists.map((project,index) =>(
             <div className="card mt-2" key={index}>
             <div className="card-header">
