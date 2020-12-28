@@ -13,7 +13,7 @@ class ProjectRepository implements CrudInterface
 
   ######## Get all project ########
   public function getAll(){
-     $projects = Project::all();
+     $projects = Project::withCount('tasks')->get();
      return $projects;
   }
   ######## Get project by id ########
