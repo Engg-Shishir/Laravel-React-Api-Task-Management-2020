@@ -1,5 +1,6 @@
 import Axios from 'axios';
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 class ProjectList extends React.Component{
 
@@ -37,10 +38,17 @@ class ProjectList extends React.Component{
     <div className="card mt-2">
       <div className="card-header text-center bg-dark">
         <div className="float-center">
-          <span className="text-danger h1">Project List -- {this.state.projectLists.length}</span>
+          <span className="text-danger h1">Project List 
+            <div>
+              <i className="fas fa-trophy text-success"></i> 
+              <span className="text-danger h2">{this.state.projectLists.length}</span>
+            </div>
+          </span>
         </div>
         <div className="float-right">
-            <button className="btn btn-sm bg-danger"><i className="fas fa-plus"></i>&nbsp; Create</button>
+          <Link to="/projects/create">
+            <button className="btn btn-sm bg-danger"><i className="fas fa-plus"></i>&nbsp; Create Project</button>
+          </Link>
         </div>
         <div className="clearfix"></div>
       </div>

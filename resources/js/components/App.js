@@ -10,6 +10,9 @@ import Footer from '../layouts/Footer';
 import Home from '../components/Home';
 import Reacts from '../components/Reacts';
 import ProjectList from '../components/projects/ProjectList';
+import ProjectCreate from './projects/ProjectCreate';
+
+
 
 
 
@@ -22,6 +25,7 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route exact path="/projects" component={ProjectList} />
         <Route exact path="/react" component={Reacts} />
+        <Route exact path="/projects/create" component={ProjectCreate} />
       </Switch>
       <Footer />
       </Router>
