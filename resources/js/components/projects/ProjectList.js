@@ -76,7 +76,7 @@ class ProjectList extends React.Component{
                {project.discription}
               </div>
               <div className="mt-4 text-right">
-              <button className="btn btn-sm bg-success"><i className="fas fa-eye"></i></button>&nbsp;
+              <Link to={`/project/view/${project.id}`}><button className="btn btn-sm bg-success"><i className="fas fa-eye"></i></button></Link>&nbsp;
               <button className="btn btn-sm bg-warning"><i className="fas fa-edit"></i></button>&nbsp;
               <button className="btn btn-sm bg-danger"><i className="fas fa-trash"></i></button>
               </div>

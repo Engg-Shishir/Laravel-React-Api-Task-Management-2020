@@ -89,7 +89,9 @@ class ProjectCreate extends React.Component{
         <form  onSubmit={this.submitForm}>
           <div className="form-group">
             <label htmlFor="name">Name</label>
-            <input type="text" name="name" placeholder="Enter your name" className="form-control" value={this.state.name} onChange={(e) => this.changeInput(e)}/>
+            <input type="text" name="name" placeholder="Enter your name" className="form-control" 
+            value={this.state.name} 
+            onChange={(e) => this.changeInput(e)}/>
             {
               this.state.errors && this.state.errors.name && <strong className="text-danger">{this.state.errors.name[0]}</strong>
             }
