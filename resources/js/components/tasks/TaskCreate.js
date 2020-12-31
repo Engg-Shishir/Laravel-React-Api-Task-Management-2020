@@ -75,23 +75,21 @@ class TaskCreate extends React.Component{
     
   return (
     <>
-    
-    <Link id="ok" to={`/project/view/${this.props.projectId}`} >okoko</Link>
 
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle"><strong>Create your task</strong></h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <div className="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div className="modal-dialog modal-dialog-centered" role="document">
+        <div className="modal-content">
+          <div className="modal-header">
+            <h5 className="modal-title" id="exampleModalLongTitle"><strong>Create your task</strong></h5>
+            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
+          <div className="modal-body">
           {
-          this.state.isLoading && <div class=" mt-2 alert bg-success alert-dismissible fade show" role="alert">
+          this.state.isLoading && <div className=" mt-2 alert bg-success alert-dismissible fade show" role="alert">
           <strong>Task Created</strong>
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <button type="button" className="close" data-dismiss="alert" aria-label="Close">
           </button></div>
           }
           <form  onSubmit={this.submitForm}>

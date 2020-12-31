@@ -12,6 +12,7 @@ import Reacts from '../components/Reacts';
 import ProjectList from '../components/projects/ProjectList';
 import ProjectCreate from './projects/ProjectCreate';
 import ProjectView from './projects/ProjectView';
+import EditProject from './projects/EditProject';
 
 
 
@@ -28,6 +29,7 @@ function App() {
         <Route exact path="/react" component={Reacts} />
         <Route exact path="/projects/create" component={ProjectCreate} />
         <Route exact path="/project/view/:id" component={ProjectView} />
+        <Route exact path="/project/edit/:id" component={EditProject} />
       </Switch>
       <Footer />
       </Router>
