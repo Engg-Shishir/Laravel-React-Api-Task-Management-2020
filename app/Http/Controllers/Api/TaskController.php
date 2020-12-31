@@ -27,7 +27,7 @@ class TaskController extends Controller
         'message' => 'task List',
         'data' => $tasks
       ]);
-  } 
+  }
   ######## Get task by id ########
   public function show($id)
   {
@@ -137,5 +137,43 @@ class TaskController extends Controller
         'data' => $taskss,
       ]);
   }
+
+
+
+
+
+  ######## status task ########
+  public function status($id)
+  {
+    $task =  Task::find($id);
+    if(is_null($task))
+    {
+      return response()->json([
+        'success' => false,
+        'message' => "task not found",
+        'data' => null,
+      ]);
+    }else{
+
+      if($task->status == 0)
+      {
+        $task->status = 1;
+        $task->save();
+      }else{
+        $task->status = 0;
+        $task->save();
+      }
+
+
+    }
+    
+    $taskss = $this->taskRepository->status($id);
+    return response()->json([
+        'success' => true,
+        'message' => 'task Deleted',
+        'data' => $taskss,
+      ]);
+  }
+
 }
 

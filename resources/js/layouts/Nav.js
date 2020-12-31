@@ -19,9 +19,6 @@ const Nav = () =>{
         <li className="nav-item ">
           <NavLink className="nav-link"  exact to="/projects">Project</NavLink>
         </li>
-        <li className="nav-item ">
-          <NavLink className="nav-link"  exact to="/users/add"><strong>Add User</strong></NavLink>
-        </li>
       </ul>
     </div>
   </nav>

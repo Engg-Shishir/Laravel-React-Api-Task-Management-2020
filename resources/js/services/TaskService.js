@@ -11,3 +11,17 @@ export const storeNewTask = async (data) => {
     return res.data;
   });
 }
+
+export const UpdateTaskStatus = async (data) => {
+  if(data.status == 0){
+    data.status = 1;
+  }else{
+    data.status = 0;
+  }
+  data.user_id = 1;
+  return await Axios.put(`http://127.0.0.1:8000/api/tasks/${data.id}`, data)
+  .then(res =>{
+    /* console.log(res.data); */
+    return res.data;
+  });
+}
