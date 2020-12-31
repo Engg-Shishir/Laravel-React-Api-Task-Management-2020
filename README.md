@@ -52,3 +52,5 @@
 
 
 
++ install react modal `npm install --save react-modal`
+
