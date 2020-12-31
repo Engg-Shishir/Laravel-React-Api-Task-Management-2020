@@ -72125,6 +72125,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _services_TaskService__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/TaskService */ "./resources/js/services/TaskService.js");
 /* harmony import */ var _tasks_TaskCreate__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../tasks/TaskCreate */ "./resources/js/components/tasks/TaskCreate.js");
+!(function webpackMissingModule() { var e = new Error("Cannot find module '$jquery'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 
@@ -72161,6 +72162,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 var ProjectView = /*#__PURE__*/function (_React$Component) {
   _inherits(ProjectView, _React$Component);
 
@@ -72182,7 +72184,12 @@ var ProjectView = /*#__PURE__*/function (_React$Component) {
       // an object
       taskLists: [],
       // an array
-      isLoading: false
+      isLoading: false,
+      taskeditid: '',
+      name: '',
+      discription: '',
+      taskstatus: '',
+      errors: []
     });
 
     _defineProperty(_assertThisInitialized(_this), "getProjectDetails", function () {
@@ -72254,6 +72261,111 @@ var ProjectView = /*#__PURE__*/function (_React$Component) {
       };
     }());
 
+    _defineProperty(_assertThisInitialized(_this), "taskDelete", /*#__PURE__*/function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(id) {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return Object(_services_TaskService__WEBPACK_IMPORTED_MODULE_4__["deleteTask"])(id);
+
+              case 2:
+                response = _context2.sent;
+
+                if (response.success) {
+                  _this.getProjectDetails();
+                } else {
+                  _this.setState({
+                    isLoading: false
+                  });
+                }
+
+              case 4:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }));
+
+      return function (_x2) {
+        return _ref2.apply(this, arguments);
+      };
+    }());
+
+    _defineProperty(_assertThisInitialized(_this), "taskEditModal", function (task) {
+      console.log(task);
+
+      _this.setState({
+        name: task.name,
+        discription: task.discription,
+        taskeditid: task.id,
+        taskstatus: task.status
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "changeInputs", function (e) {
+      var _this$setState;
+
+      _this.setState((_this$setState = {}, _defineProperty(_this$setState, e.target.name, e.target.value), _defineProperty(_this$setState, "isLoading", false), _defineProperty(_this$setState, "errors", ''), _this$setState));
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "submitForms", /*#__PURE__*/function () {
+      var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(e) {
+        var postBody, response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                e.preventDefault();
+                postBody = {
+                  name: _this.state.name,
+                  discription: _this.state.discription,
+                  taskid: _this.state.taskeditid,
+                  project_id: _this.props.match.params.id,
+                  status: _this.state.taskstatus
+                };
+                _context3.next = 4;
+                return Object(_services_TaskService__WEBPACK_IMPORTED_MODULE_4__["UpdateTaskData"])(postBody);
+
+              case 4:
+                response = _context3.sent;
+
+                if (response.success) {
+                  _this.setState({
+                    name: '',
+                    discription: '',
+                    taskeditid: '',
+                    taskstatus: '',
+                    isLoading: true,
+                    errors: ''
+                  });
+
+                  _this.getProjectDetails();
+
+                  !(function webpackMissingModule() { var e = new Error("Cannot find module '$jquery'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())('#close').click();
+                } else {
+                  _this.setState({
+                    errors: response.errors,
+                    isLoading: false
+                  });
+                }
+
+              case 6:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }));
+
+      return function (_x3) {
+        return _ref3.apply(this, arguments);
+      };
+    }());
+
     return _this;
   }
 
@@ -72304,34 +72416,34 @@ var ProjectView = /*#__PURE__*/function (_React$Component) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
           className: "card mt-2",
           key: index
-        }, task.status == 1 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+        }, task.status == 1 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
           className: "card-header bg-success"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
           className: "row"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
-          className: "col-md-6 "
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("button", {
-          className: "btn btn-sm bg-danger",
-          onClick: function onClick() {
-            return _this2.UpdateTaskStatus(task);
-          }
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("i", {
-          className: ""
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("strong", null, "X"))), "\xA0 \xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("span", {
-          className: "h2"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("strong", null, task.name), "\xA0")))), task.status == 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
-          className: "card-header bg-dark text-light"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
-          className: "row"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
-          className: "col-md-6"
+          className: "col-md-12 "
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("button", {
           className: "btn btn-sm bg-success",
           onClick: function onClick() {
             return _this2.UpdateTaskStatus(task);
           }
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("i", {
-          className: "fas fa-check"
+          className: "fas fa-times text-danger h4"
+        })), "\xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("span", {
+          className: "h4"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("strong", null, task.name)))))), task.status == 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+          className: "card-header bg-dark text-light"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+          className: "row"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+          className: "col-md-12"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("button", {
+          className: "btn btn-sm bg-dark",
+          onClick: function onClick() {
+            return _this2.UpdateTaskStatus(task);
+          }
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("i", {
+          className: "fas fa-check text-success h4"
         })), "\xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("span", {
           className: "h4"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("strong", null, task.name), "\xA0")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
@@ -72341,18 +72453,96 @@ var ProjectView = /*#__PURE__*/function (_React$Component) {
         }, task.discription), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
           className: "mt-4 text-right"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("button", {
-          className: "btn btn-sm bg-warning"
+          "data-toggle": "modal",
+          "data-target": "#EditTask",
+          className: "btn btn-sm bg-warning",
+          onClick: function onClick() {
+            return _this2.taskEditModal(task);
+          }
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("i", {
           className: "fas fa-edit"
         })), "\xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("button", {
-          className: "btn btn-sm bg-danger"
+          className: "btn btn-sm bg-danger",
+          onClick: function onClick() {
+            return _this2.taskDelete(task.id);
+          }
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("i", {
           className: "fas fa-trash"
         }))))));
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_tasks_TaskCreate__WEBPACK_IMPORTED_MODULE_5__["default"], {
         projectId: this.props.match.params.id,
         onCompleteTaskCreate: this.onCompleteTaskCreate
-      }));
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+        className: "modal fade",
+        id: "EditTask",
+        tabindex: "-1",
+        role: "dialog",
+        "aria-labelledby": "EditTaskTitle",
+        "aria-hidden": "true"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+        className: "modal-dialog modal-dialog-centered",
+        role: "document"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+        className: "modal-content"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+        className: "modal-header"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("h5", {
+        className: "modal-title",
+        id: "exampleModalLongTitle"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("strong", null, "Upadete your task")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("button", {
+        id: "close",
+        type: "button",
+        className: "close",
+        "data-dismiss": "modal",
+        "aria-label": "Close"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("span", {
+        "aria-hidden": "true"
+      }, "\xD7"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+        className: "modal-body"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("form", {
+        onSubmit: this.submitForms
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("input", {
+        type: "hidden",
+        value: this.state.taskeditid,
+        name: "taskeditid"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("input", {
+        type: "hidden",
+        value: this.state.taskstatus,
+        name: "taskstatus"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+        className: "form-group"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("input", {
+        type: "text",
+        name: "name",
+        className: "form-control",
+        placeholder: "Enter task name",
+        value: this.state.name,
+        onChange: function onChange(e) {
+          return _this2.changeInputs(e);
+        }
+      }), this.state.errors && this.state.errors.name && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("strong", {
+        className: "text-danger"
+      }, this.state.errors.name[0])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+        className: "form-group"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("textarea", _defineProperty({
+        type: "text",
+        name: "discription",
+        className: "form-control",
+        rows: "3",
+        placeholder: "Enter task discription",
+        value: this.state.discription,
+        onChange: function onChange(e) {
+          return _this2.changeInputs(e);
+        }
+      }, "name", "discription")), this.state.errors && this.state.errors.discription && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("strong", {
+        className: "text-danger"
+      }, this.state.errors.discription[0])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+        className: "form-group"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("input", {
+        type: "submit",
+        className: "btn btn-success form-control",
+        value: "Submit"
+      }))))))));
     }
   }]);
 
@@ -72792,7 +72982,7 @@ var deleteProject = /*#__PURE__*/function () {
 /*!**********************************************!*\
   !*** ./resources/js/services/TaskService.js ***!
   \**********************************************/
-/*! exports provided: getTaskList, storeNewTask, UpdateTaskStatus */
+/*! exports provided: getTaskList, storeNewTask, UpdateTaskStatus, UpdateTaskData, deleteTask */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -72800,6 +72990,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTaskList", function() { return getTaskList; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "storeNewTask", function() { return storeNewTask; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UpdateTaskStatus", function() { return UpdateTaskStatus; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UpdateTaskData", function() { return UpdateTaskData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteTask", function() { return deleteTask; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
@@ -72871,6 +73063,60 @@ var UpdateTaskStatus = /*#__PURE__*/function () {
 
   return function UpdateTaskStatus(_x2) {
     return _ref2.apply(this, arguments);
+  };
+}();
+var UpdateTaskData = /*#__PURE__*/function () {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(data) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            data.project_id = parseInt(data.project_id);
+            data.status = parseInt(data.status);
+            _context3.next = 4;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("http://127.0.0.1:8000/api/tasks/".concat(parseInt(data.taskid)), data).then(function (res) {
+              return res.data;
+            });
+
+          case 4:
+            return _context3.abrupt("return", _context3.sent);
+
+          case 5:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3);
+  }));
+
+  return function UpdateTaskData(_x3) {
+    return _ref3.apply(this, arguments);
+  };
+}();
+var deleteTask = /*#__PURE__*/function () {
+  var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(id) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            _context4.next = 2;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("http://127.0.0.1:8000/api/tasks/".concat(id)).then(function (res) {
+              return res.data;
+            });
+
+          case 2:
+            return _context4.abrupt("return", _context4.sent);
+
+          case 3:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4);
+  }));
+
+  return function deleteTask(_x4) {
+    return _ref4.apply(this, arguments);
   };
 }();
 
